@@ -1,0 +1,19 @@
+version: '2'
+services:
+  postgres:
+    container_name: "pg"
+    image: "postgres:9.6"
+    volumes:
+      - "./database:/seed"
+      - "./postgresql.conf:/postgresql.conf"
+    ports:
+     - "5432:5432"
+    environment:
+     - POSTGRES_DB=contests
+     - POSTGRES_USER=postgres
+    command: "postgres -c config_file=/postgresql.conf"
+  mongodb:
+    container_name: "mongo"
+    image: "mongo:3.0"
+    ports:
+     - "27017:27017"
